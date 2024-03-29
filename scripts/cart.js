@@ -1,4 +1,4 @@
-const cartWindow = document.querySelector(".form-cart-window");
+const cartWindow = document.querySelector(".cart-window");
 const prods = document.querySelector(".cart-list");
 
 document.getElementById("cartButton").addEventListener("click", (e) => {

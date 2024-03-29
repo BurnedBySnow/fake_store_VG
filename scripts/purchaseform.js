@@ -1,4 +1,4 @@
-const cartWindow = document.querySelector(".cart-window");
+const cartWindow = document.querySelector(".form-cart-window");
 const prods = document.querySelector(".cart-list");
 
 const addDOMToCart = (item) => {
