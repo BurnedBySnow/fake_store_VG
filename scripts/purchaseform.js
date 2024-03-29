@@ -1,38 +1,6 @@
 const cartWindow = document.querySelector(".cart-window");
 const prods = document.querySelector(".cart-list");
 
-document.getElementById("cartButton").addEventListener("click", (e) => {
-  cartWindow.style.visibility =
-    cartWindow.style.visibility === "hidden" ? "visible" : "hidden";
-});
-
-const addToCart = (item) => {
-  let cart = JSON.parse(localStorage.getItem("cart"));
-  if (!cart) {
-    localStorage.setItem(
-      "cart",
-      JSON.stringify([{ product: item, amount: 1 }])
-    );
-  } else {
-    const ind = cart.findIndex((p) => p.product.id === item.id);
-
-    if (ind === -1) {
-      cart.push({ product: item, amount: 1 });
-    } else {
-      const updatedProd = { ...cart[ind], amount: (cart[ind].amount += 1) };
-
-      const updatedCart = [
-        ...cart.slice(0, ind),
-        updatedProd,
-        ...cart.slice(ind + 1),
-      ];
-
-      cart = updatedCart;
-    }
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }
-};
-
 const addDOMToCart = (item) => {
   const container = document.createElement("li");
   container.classList.add("cart-item");
@@ -122,7 +90,6 @@ const addDOMToCart = (item) => {
       reduce(item);
     }
     updateSum();
-    hideOrShowCheckout();
   });
 
   moreAmount.addEventListener("click", () => {
@@ -135,7 +102,6 @@ const addDOMToCart = (item) => {
     prods.removeChild(container);
     removeItem(item);
     updateSum();
-    hideOrShowCheckout();
   });
 };
 
@@ -151,7 +117,6 @@ const reduce = (item) => {
     ...cart.slice(ind + 1),
   ];
 
-  hideOrShowCheckout();
   localStorage.setItem("cart", JSON.stringify(updatedCart));
 };
 
@@ -191,55 +156,6 @@ const updateSum = () => {
   document.getElementById("CartSum").innerHTML = "$" + sum.toFixed(2);
 };
 
-document.getElementById("EmptyCart").addEventListener("click", () => {
-  localStorage.removeItem("cart");
-  document.getElementById("CartList").innerHTML = "";
-  updateSum();
-  hideOrShowCheckout();
-});
-
-document
-  .getElementById("purchase-button")
-  .addEventListener("click", async function (event) {
-    // Event listener for saving product ID to localStorage and redirecting
-    const prod = JSON.parse(localStorage.getItem("selectedProduct"));
-    const cart = JSON.parse(localStorage.getItem("cart"));
-    addToCart(prod);
-    hideOrShowCheckout();
-
-    if (!cart) {
-      let newProd = { product: prod, amount: 1 };
-      return addDOMToCart(newProd);
-    }
-    let item = cart.find((p) => p.product.id === prod.id);
-    if (item) {
-      let ind = cart.findIndex((p) => p.product.id === prod.id);
-      let dom = Array.from(
-        document.getElementsByClassName("cart-list")[0].children
-      )[ind].children[1].children[0].children[1].children[0].children[1];
-
-      dom.innerHTML++;
-    } else {
-      let newProd = { product: prod, amount: 1 };
-      addDOMToCart(newProd);
-    }
-  });
-
-document.getElementById("CheckoutButton").addEventListener("click", () => {
-  window.location.href = "purchaseformBS.html";
-});
-
-const hideOrShowCheckout = () => {
-  const cart = JSON.parse(localStorage.getItem("cart"));
-  const dom = document.getElementById("BottomRowContainer");
-
-  if (!cart || cart.length === 0) {
-    dom.style.display = "none";
-  } else {
-    dom.style.display = "flex";
-  }
-};
-
 document.addEventListener("DOMContentLoaded", () => {
   const cart = JSON.parse(localStorage.getItem("cart"));
 
@@ -247,5 +163,4 @@ document.addEventListener("DOMContentLoaded", () => {
     cart.forEach((p) => addDOMToCart(p));
   }
   updateSum();
-  hideOrShowCheckout();
 });
