@@ -1,5 +1,6 @@
 const cartWindow = document.querySelector(".form-cart-window");
 const prods = document.querySelector(".cart-list");
+console.log("hello there in purchase form");
 
 const addDOMToCart = (item) => {
   const container = document.createElement("li");
