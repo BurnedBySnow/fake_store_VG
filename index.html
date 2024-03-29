@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>FakeStore</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="styles/home.css" />
+  <link rel="stylesheet" href="styles/cart.css" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg custom-navbar-main navbar-light" onclick="collapseNavs()">
+
+    <div class="container-fluid">
+      <button id="navbarLinks" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-collapse"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="justify-content-lg-center">
+        <div class="collapse navbar-collapse" id="navbar-collapse">
+          <ul class="navbar-nav row align-items-lg-center">
+            <li class="nav-item col-md-auto">
+              <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+            </li>
+            <li class="nav-item col-md-auto">
+              <a class="nav-link" href="aboutus.html">About Us</a>
+            </li>
+            <li class="nav-item col-md-auto">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+        <ul class="navbar-nav ms-auto justify-content-center">
+          <li class="nav-item col-md-auto">
+            <a class="navbar-brand fw-light" href="index.html">FakeStore</a>
+          </li>  
+        </ul>
+        <div class="cart">
+          <button class="btn btn-success" id="cartButton">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+              <path d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/>
+            </svg>
+          </button>
+          <div class="cart-window">
+            <div class="products-info">
+              <header class="info-header">
+                <div class="top-row">
+                  <p class="top-row-product align-item">Product</p>
+                  <p class="top-row-amount">Amount</p>
+                  <p class="top-row-price">Price</p>
+                  <p class="top-row-remove"></p>
+                </div>
+              </header>
+              <ul class="cart-list" id="CartList"></ul>
+              <footer class="cart-footer">
+                <div class="cart-footer-container">
+                  <div>
+                    <div class="cart-sum">
+                      <span class="cart-sum-text">Sum:</span>
+                      <div class="cart-sum-amount">
+                        <span class="cart-sum-amount-span" id="CartSum"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </footer>
+            </div>
+            <div class="cart-bottom-row">
+              <div class="bottom-row-container" id="BottomRowContainer">
+                <div class="empty-cart">
+                  <div>
+                    <button class="empty-cart-button" id="EmptyCart">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                        <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/>
+                      </svg>
+                      Empty
+                    </button>
+                  </div>
+                </div>
+                <div class="checkout">
+                  <button class="btn checkout-button btn-success" id="CheckoutButton">Checkout</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </nav>
+
+  <nav class="navbar navbar-expand-lg custom-navbar-secondary shadow-sm justify-content-center">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-secondary" 
+      aria-controls="navbar-secondary" aria-expanded="false" aria-label="Toggle navigation" id="category-button">
+        <span class="navbar-toggler-icon hidden-burger"></span>
+        Categories &#11206
+      </button>
+      <div class="collapse navbar-collapse" id="navbar-secondary">
+        <ul class="navbar-nav mx-auto" id="Categories">
+          <li class="nav-item col-md-auto">
+            <p class="nav-link nav-link-secondary my-0" id="w-clothing">Women's Clothing</p>
+          </li>
+          <li class="nav-item col-md-auto">
+            <p class="nav-link nav-link-secondary my-0" id="m-clothing">Men's Clothing</p>
+          </li>
+          <li class="nav-item col-md-auto">
+            <p class="nav-link nav-link-secondary my-0" id="jewelery">Jewellery</p>
+          </li>
+          <li class="nav-item col-md-auto">
+            <p class="nav-link nav-link-secondary my-0" id="electronics">Electronics</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content shadow-lg">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="modal-body-upper">
+            <div class="image-container">
+              <img class="modal-image rounded">
+            </div>
+            <p class="description scrollable" />
+          </div>
+        </div>
+        <div class="modal-body p-0">
+          <div class="modal-body-lower p-2">
+            <p class="modal-price m-0" />
+            <div class="rating">
+              <div tabindex="0" class="stars" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="focus hover" title="">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                </svg>
+              </div>
+              <p class="rating-count m-0" />
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="purchase-button">Purchase</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div id="ProductsLayout" class="products-layout" onclick="collapseNavs()"></div>
+
+  <nav class="navbar navbar-expand-lg custom-navbar-secondary shadow-sm footer">
+    <div>
+      <span class="text-start text-white custom-text-size-small ms-4">
+        &copy;2024 FakeStore Ink. - All rights reserved.
+      </span>
+    </div>
+  </nav>
+
+</body>
+<script src="scripts/main.js"></script>
+<script src="scripts/cart.js"></script>
+</html>
