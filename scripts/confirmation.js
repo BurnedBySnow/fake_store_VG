@@ -41,7 +41,7 @@ const addDOMToCart = (item) => {
 
   articleAmount.appendChild(amountContainer);
   amountContainer.append(amountLabel);
-  article.append(mainInfo, articleAmount, articlePrice, articleRemove);
+  article.append(mainInfo, articleAmount, articlePrice);
   info.appendChild(article);
 
   container.append(pic, info);
@@ -62,11 +62,18 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("cityCon").textContent = localStorage.getItem("city");
 
   // Fetching product ID from localStorage
-  const products = localStorage.getItem("cart");
+  const products = JSON.parse(localStorage.getItem("cart"));
+  console.log(products);
 
   products.forEach((p) => {
+    console.log(p);
     addDOMToCart(p);
+    document.getElementById("CartSum").innerHTML =
+      Number(document.getElementById("CartSum").innerHTML) +
+      p.amount * p.product.price;
   });
+  document.getElementById("CartSum").innerHTML =
+    "$" + Number(document.getElementById("CartSum").innerHTML).toFixed(2);
 
   localStorage.clear();
 });
