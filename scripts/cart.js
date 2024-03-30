@@ -223,6 +223,7 @@ document
       let newProd = { product: prod, amount: 1 };
       addDOMToCart(newProd);
     }
+    updateSum();
   });
 
 document.getElementById("CheckoutButton").addEventListener("click", () => {
