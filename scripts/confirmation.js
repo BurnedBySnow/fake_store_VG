@@ -65,6 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const products = localStorage.getItem("cart");
 
   products.forEach((p) => {
+    console.log(p);
     addDOMToCart(p);
   });
 
